@@ -1,7 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
-import SignIn from "./SignIn";
 import { handleInitialData } from "../actions/shared";
+import SignIn from "./SignIn";
+import CreatePoll from "./CreatePoll";
 
 class App extends React.Component {
   componentDidMount() {
@@ -11,7 +12,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <SignIn />
+        <CreatePoll />
       </div>
     );
   }

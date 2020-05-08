@@ -8,6 +8,7 @@ class SignIn extends React.Component {
   };
 
   onChange = (e) => {
+    e.preventDefault();
     this.setState({ selectedUser: e.target.value });
   };
 
@@ -19,24 +20,35 @@ class SignIn extends React.Component {
     const { users } = this.props;
 
     return (
-      <div>
-        <h1>Sign In</h1>
-        <select id="userSelector" onChange={this.onChange}>
-          <option value="" disabled selected>
-            Select a user
-          </option>
-          {users.map((user) => (
-            <option key={user.id} value={user.id}>
-              {user.name}
-            </option>
-          ))}
-        </select>
-        <button
-          disabled={this.state.selectedUser === ""}
-          onClick={this.handleSubmit}
-        >
-          Login
-        </button>
+      <div className="container">
+        <div className="mt-4 mx-auto w-70">
+          <h1 className="display-5 text-center text-success">Sign In</h1>
+          <form className="m-4">
+            <div className="form-group">
+              <select
+                className="form-control"
+                defaultValue=""
+                onChange={this.onChange}
+              >
+                <option value="" disabled>
+                  Select a user
+                </option>
+                {users.map((user) => (
+                  <option key={user.id} value={user.id}>
+                    {user.name}
+                  </option>
+                ))}
+              </select>
+              <button
+                className="form-control mt-2 btn btn-success"
+                disabled={this.state.selectedUser === ""}
+                onClick={this.handleSubmit}
+              >
+                Login
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
     );
   }

@@ -43,7 +43,8 @@ export function handleAddQuestion(author, optionOneText, optionTwoText) {
         dispatch(addQuestionToUser(question));
       })
       .catch((err) => {
-        alert("Something wrong happened. Try again. ", err);
+        console.warn(err);
+        alert("Something wrong happened. Try again. ");
       });
   };
 }
@@ -56,7 +57,8 @@ export function handleSaveAnswer(answer, questionID, authedUser) {
         dispatch(saveAnswerToUser(answer));
       })
       .catch((err) => {
-        alert("Something wrong happene. Try again. ", err);
+        console.warn(err);
+        alert("Something wrong happene. Try again. ");
       });
   };
 }

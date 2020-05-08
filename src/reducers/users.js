@@ -27,7 +27,7 @@ export default function users(state = {}, action) {
       };
 
     case ADD_QUESTION_TO_USER:
-      const { author, id } = action;
+      const { author, id } = action.question;
       return {
         ...state,
         [author]: {
