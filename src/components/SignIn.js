@@ -12,7 +12,8 @@ class SignIn extends React.Component {
     this.setState({ selectedUser: e.target.value });
   };
 
-  handleSubmit = () => {
+  handleSubmit = (e) => {
+    e.preventDefault();
     this.props.dispatch(setAuthedUser(this.state.selectedUser));
   };
 
@@ -21,8 +22,11 @@ class SignIn extends React.Component {
 
     return (
       <div className="container">
-        <div className="mt-4 mx-auto w-70">
-          <h1 className="display-5 text-center text-success">Sign In</h1>
+        <div className="mt-5 mx-auto w-75">
+          <h1 className="display-5 text-center text-success">
+            Would You Rather!
+          </h1>
+          <h3 className="text-center text-success mt-5">Sign in to continue</h3>
           <form className="m-4">
             <div className="form-group">
               <select

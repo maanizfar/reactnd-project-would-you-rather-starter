@@ -19,7 +19,7 @@ export function recieveQuestions(questions) {
   };
 }
 
-function saveAnswer({ authedUser, qid, answer }) {
+function saveAnswer({ answer, qid, authedUser }) {
   return {
     type: SAVE_ANSWER,
     answer,
@@ -51,14 +51,11 @@ export function handleAddQuestion(author, optionOneText, optionTwoText) {
 
 export function handleSaveAnswer(answer, questionID, authedUser) {
   return (dispatch) => {
-    return saveAnswerToDatabase(answer, questionID, authedUser)
-      .then((answer) => {
-        dispatch(saveAnswer(answer));
-        dispatch(saveAnswerToUser(answer));
-      })
-      .catch((err) => {
-        console.warn(err);
-        alert("Something wrong happene. Try again. ");
-      });
+    dispatch(saveAnswer({ answer, qid: questionID, authedUser }));
+    dispatch(saveAnswerToUser({ answer, qid: questionID, authedUser }));
+    return saveAnswerToDatabase(answer, questionID, authedUser).catch((err) => {
+      console.warn(err);
+      alert("Something wrong happene. Try again. ");
+    });
   };
 }

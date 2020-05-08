@@ -13,15 +13,15 @@ export default function users(state = {}, action) {
       };
 
     case SAVE_ANSWER_TO_USER:
-      const { authedUser, questionID, answer } = action;
-
+      const { authedUser, qid, answer } = action;
+      console.log("SAVE_ANSWERTOUSER: ", qid);
       return {
         ...state,
         [authedUser]: {
           ...state[authedUser],
           answers: {
             ...state[authedUser].answers,
-            [questionID]: answer,
+            [qid]: answer,
           },
         },
       };

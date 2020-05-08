@@ -16,11 +16,11 @@ export function addQuestion(question) {
   };
 }
 
-export function saveAnswer(answer, authedUser, questionID) {
+export function saveAnswer({ answer, authedUser, qid }) {
   return {
     type: SAVE_ANSWER_TO_USER,
     answer,
     authedUser,
-    questionID,
+    qid,
   };
 }

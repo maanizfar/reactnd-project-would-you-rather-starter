@@ -19,5 +19,5 @@ export function addQuestion(question) {
 }
 
 export function saveAnswer(answer, questionID, authedUser) {
-  return _saveQuestionAnswer({ authedUser, questionID, answer });
+  return _saveQuestionAnswer({ authedUser, qid: questionID, answer });
 }

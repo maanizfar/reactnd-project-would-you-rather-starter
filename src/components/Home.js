@@ -1,17 +1,11 @@
 import React from "react";
 import { connect } from "react-redux";
-import { setAuthedUser } from "../actions/authedUser";
 import PollCard from "./PollCard";
 
 class Home extends React.Component {
   state = {
     showAnswered: false,
   };
-
-  //TODO: Remove this
-  componentDidMount() {
-    this.props.dispatch(setAuthedUser("sarahedo"));
-  }
 
   changePollList = (showAnswered) => {
     this.setState({ showAnswered });
@@ -23,7 +17,7 @@ class Home extends React.Component {
     const polls = showAnswered ? answeredQuestions : unAnsweredQuestions;
 
     return (
-      <div className="container border w-70">
+      <div className="container border">
         <button
           className={
             showAnswered ? "btn btn-secondary w-50" : "btn btn-primary w-50"
@@ -42,13 +36,18 @@ class Home extends React.Component {
           Answered
         </button>
 
+        {polls.length === 0 && (
+          <p className="text-center m-4">Polls not available</p>
+        )}
         {polls.map((poll) => {
           return (
             <PollCard
               key={poll.id}
+              id={poll.id}
               author={poll.author}
               optionOne={poll.optionOne.text}
               answered={showAnswered}
+              avatarURL={this.props.users[poll.author].avatarURL}
             />
           );
         })}
@@ -57,17 +56,20 @@ class Home extends React.Component {
   }
 }
 
-function mapStateToProps({ questions, authedUser }) {
+function mapStateToProps({ questions, authedUser, users }) {
   const questionsArray = Object.values(questions);
-  const answeredQuestions = questionsArray.filter(
-    (q) => q.author === authedUser
-  );
-  const unAnsweredQuestions = questionsArray.filter(
-    (q) => q.author !== authedUser
-  );
+  const user = users[authedUser];
+  const answeredQuestionsIds = Object.keys(user.answers);
+  const answeredQuestions = answeredQuestionsIds
+    .map((id) => questions[id])
+    .sort((a, b) => b.timestamp - a.timestamp);
+  const unAnsweredQuestions = questionsArray
+    .filter((q) => !answeredQuestionsIds.includes(q.id))
+    .sort((a, b) => b.timestamp - a.timestamp);
   return {
     answeredQuestions,
     unAnsweredQuestions,
+    users,
   };
 }
 

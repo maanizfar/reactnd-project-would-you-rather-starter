@@ -1,18 +1,14 @@
 import React from "react";
 import { connect } from "react-redux";
 import { handleAddQuestion } from "../actions/questions";
-import { setAuthedUser } from "../actions/authedUser";
+import { Redirect } from "react-router-dom";
 
 class CreatePoll extends React.Component {
   state = {
     optionOne: "",
     optionTwo: "",
+    submitted: false,
   };
-
-  //TODO: REMOVE THIS
-  componentDidMount() {
-    this.props.dispatch(setAuthedUser("sarahedo"));
-  }
 
   onChange = (option, value) => {
     this.setState({
@@ -26,12 +22,13 @@ class CreatePoll extends React.Component {
     this.props.dispatch(
       handleAddQuestion(this.props.authedUser, optionOne, optionTwo)
     );
-    this.setState({ optionOne: "", optionTwo: "" });
+    this.setState({ optionOne: "", optionTwo: "", submitted: true });
   };
 
   render() {
-    // console.log(this.state);
-    const { optionOne, optionTwo } = this.state;
+    const { submitted, optionOne, optionTwo } = this.state;
+
+    if (submitted) return <Redirect to="/" />;
 
     return (
       <div className="container">

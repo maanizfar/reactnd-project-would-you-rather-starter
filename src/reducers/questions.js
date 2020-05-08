@@ -3,7 +3,6 @@ import {
   ADD_QUESTION,
   SAVE_ANSWER,
 } from "../actions/questions";
-import authedUser from "./authedUser";
 
 export default function questions(state = {}, action) {
   switch (action.type) {
@@ -17,7 +16,7 @@ export default function questions(state = {}, action) {
       };
 
     case SAVE_ANSWER:
-      const { qid, answer } = action;
+      const { qid, answer, authedUser } = action;
 
       return {
         ...state,

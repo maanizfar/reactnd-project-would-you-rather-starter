@@ -7,7 +7,6 @@ class Leaderboard extends React.Component {
     const { data } = this.props;
     return (
       <div>
-        <h1>Leaderboard</h1>
         {data.map((user) => (
           <UserStatCard
             key={user.id}
@@ -35,7 +34,6 @@ function mapStateToProps({ users }) {
     }))
     .sort((a, b) => b.totalScore - a.totalScore)
     .slice(0, 3);
-  //   console.log(data);
   return { data };
 }
 
