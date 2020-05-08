@@ -66,7 +66,12 @@ class PollResultCard extends React.Component {
         <div className="card-header">{author} asks:</div>
         <div className="card-body d-flex">
           <div>
-            <img src={this.props.avatarURL} width="160px" height="160px" />
+            <img
+              src={this.props.avatarURL}
+              alt="avatar"
+              width="160px"
+              height="160px"
+            />
           </div>
           <div className="mx-4 w-100">
             <h4 className="font-weight-bold">Results:</h4>

@@ -6,7 +6,7 @@ class UserStatCard extends React.Component {
     return (
       <div className="card border border-success p-3 m-3  d-flex flex-row">
         <div>
-          <img src={avatarURL} width="160px" height="160px" />
+          <img src={avatarURL} alt="avatar" width="160px" height="160px" />
         </div>
         <div className="card-body w-100">
           <h3 className="card-title font-weight-bold">{name}</h3>

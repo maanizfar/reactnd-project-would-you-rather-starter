@@ -37,7 +37,12 @@ class PollQuestionCard extends React.Component {
         <div className="card-header">{author} asks:</div>
         <div className="card-body d-flex">
           <div>
-            <img src={this.props.avatarURL} width="160px" height="160px" />
+            <img
+              src={this.props.avatarURL}
+              alt="avatar"
+              width="160px"
+              height="160px"
+            />
           </div>
           <div className="mx-4 w-100">
             <p className="font-weight-bold">Would you rather...</p>

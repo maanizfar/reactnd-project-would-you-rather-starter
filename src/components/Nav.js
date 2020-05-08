@@ -30,6 +30,7 @@ class Nav extends React.Component {
               width="40px"
               height="40px"
               className="p-1 mx-1"
+              alt="avatar"
             />
             <span className="text-light">{this.props.user.name}</span>
           </div>
