@@ -3,6 +3,8 @@ import { connect } from "react-redux";
 import { handleInitialData } from "../actions/shared";
 import SignIn from "./SignIn";
 import CreatePoll from "./CreatePoll";
+import Leaderboard from "./Leaderboard";
+import Home from "./Home";
 
 class App extends React.Component {
   componentDidMount() {
@@ -12,7 +14,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <CreatePoll />
+        <Home />
       </div>
     );
   }

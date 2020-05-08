@@ -9,6 +9,7 @@ class CreatePoll extends React.Component {
     optionTwo: "",
   };
 
+  //TODO: REMOVE THIS
   componentDidMount() {
     this.props.dispatch(setAuthedUser("sarahedo"));
   }
