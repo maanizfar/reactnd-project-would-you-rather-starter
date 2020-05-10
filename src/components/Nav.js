@@ -9,12 +9,14 @@ class Nav extends React.Component {
   };
 
   render() {
+    const { user } = this.props;
     return (
       <nav className="navbar navbar-expand-md navbar-dark bg-dark mb-4">
         <div className="navbar-nav mr-auto">
           <Link to="/" className="nav-item nav-link">
             Home
           </Link>
+
           <Link to="/add" className="nav-item nav-link">
             New Poll
           </Link>
@@ -22,22 +24,23 @@ class Nav extends React.Component {
             Leaderboard
           </Link>
         </div>
-
-        <div className="navbar-nav ml-auto">
-          <div className="mx-4">
-            <img
-              src={this.props.user.avatarURL}
-              width="40px"
-              height="40px"
-              className="p-1 mx-1"
-              alt="avatar"
-            />
-            <span className="text-light">{this.props.user.name}</span>
+        {user && (
+          <div className="navbar-nav ml-auto">
+            <div className="mx-4">
+              <img
+                src={user.avatarURL}
+                width="40px"
+                height="40px"
+                className="p-1 mx-1"
+                alt="avatar"
+              />
+              <span className="text-light">{user.name}</span>
+            </div>
+            <button className="btn btn-danger" onClick={this.logout}>
+              Logout
+            </button>
           </div>
-          <button className="btn btn-danger" onClick={this.logout}>
-            Logout
-          </button>
-        </div>
+        )}
       </nav>
     );
   }
