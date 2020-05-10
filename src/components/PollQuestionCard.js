@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { handleSaveAnswer } from "../actions/questions";
-import { withRouter } from "react-router-dom";
+import { withRouter, Redirect } from "react-router-dom";
 
 class PollQuestionCard extends React.Component {
   state = {
@@ -26,12 +26,11 @@ class PollQuestionCard extends React.Component {
   };
 
   render() {
-    if (this.props.question === undefined) {
-      this.props.history.push("/");
+    if (this.props.questionInvalid) {
+      return <Redirect to="/error404" />;
     }
 
     const { author, optionOne, optionTwo } = this.props.question;
-    // console.log(this.props.question.id);
     return (
       <div className="card m-3 mx-auto ">
         <div className="card-header">{author} asks:</div>
@@ -91,10 +90,17 @@ class PollQuestionCard extends React.Component {
 
 function mapStateToProps({ authedUser, questions, users }, { match }) {
   const question = questions[match.params.id];
+
+  if (question === undefined)
+    return {
+      questionInvalid: true,
+    };
+
   return {
     authedUser,
     question: question,
     avatarURL: users[question.author].avatarURL,
+    questionInvalid: false,
   };
 }
 
