@@ -20,11 +20,13 @@ class App extends React.Component {
     const { authedUser } = this.props;
     return (
       <div className="App">
+        <Nav />
         {authedUser === null ? (
-          <Route component={SignIn} />
+          <Fragment>
+            <Route component={SignIn} />
+          </Fragment>
         ) : (
           <Fragment>
-            <Nav />
             <Switch>
               <Route exact path="/" component={Home} />
               <Route path="/add" component={CreatePoll} />
@@ -35,6 +37,7 @@ class App extends React.Component {
                 path="/questions/:id/results"
                 component={PollResultCard}
               />
+              <Route path="/error404" component={Error404} />
               <Route component={Error404} />
             </Switch>
           </Fragment>
